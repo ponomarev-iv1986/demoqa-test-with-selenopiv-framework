@@ -33,6 +33,8 @@ browser.element('//div[@id="hobbiesWrapper"]//*[contains(text(), "Music")]').cli
 # load picture
 browser.element('#uploadPicture').type(
     '/Users/ivanponomarev/PycharmProjects/demoqa-test-with-selenopiv-framework/tests/resourcer/car.jpeg')
+
+# address
 browser.element('#currentAddress').type('Microsoft Campus')
 
 # fill state
