@@ -5,12 +5,10 @@ from selenium.common import WebDriverException
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenopiv.wait import CustomWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 from selenopiv.selector import to_locator
+from selenopiv.wait import CustomWait
 
 
 @dataclass
