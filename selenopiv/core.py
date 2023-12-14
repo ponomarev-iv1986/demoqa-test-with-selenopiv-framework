@@ -1,11 +1,8 @@
 from dataclasses import dataclass
 
-from selenium import webdriver
 from selenium.common import WebDriverException
-from selenium.webdriver import Keys
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver import Keys, ActionChains
 from selenium.webdriver.chrome.webdriver import WebDriver
-from webdriver_manager.chrome import ChromeDriverManager
 
 from selenopiv.selector import to_locator
 from selenopiv.wait import CustomWait
@@ -13,13 +10,13 @@ from selenopiv.wait import CustomWait
 
 @dataclass
 class Config:
-    driver: WebDriver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver: WebDriver
     timeout: float = 3.0
     base_url: str = ''
 
 
 class Browser:
-    def __init__(self, config: Config = Config()):
+    def __init__(self, config: Config):
         self.config = config
         self.driver: WebDriver = config.driver
         self.wait = CustomWait(
@@ -74,6 +71,25 @@ class Element:
         self.wait.until(command)
         return self
 
+    def click_by_action(self):
+        def command(driver: WebDriver):
+            action = ActionChains(driver)
+            webelement = driver.find_element(*to_locator(self.selector))
+            action.click(webelement).perform()
+            return True
+
+        self.wait.until(command)
+        return self
+
+    def click_by_js(self):
+        def command(driver: WebDriver):
+            webelement = driver.find_element(*to_locator(self.selector))
+            driver.execute_script('arguments[0].click();', webelement)
+            return True
+
+        self.wait.until(command)
+        return self
+
     # CONDITIONS
 
     def should_have_text(self, value):
@@ -82,6 +98,17 @@ class Element:
             actual_value = webelement.text
             if actual_value != value:
                 raise AssertionError(f'text of element is not "{value}"\nactual value: "{actual_value}"')
+            return True
+
+        self.wait.until(condition)
+        return self
+
+    def should_have_attribute(self, attribute, value):
+        def condition(driver: WebDriver):
+            webelement = driver.find_element(*to_locator(self.selector))
+            actual_value = webelement.get_attribute(attribute)
+            if actual_value != value:
+                raise AssertionError(f'attribute "{attribute}" is not "{value}"\nactual value: "{actual_value}"')
             return True
 
         self.wait.until(condition)

@@ -1,9 +1,7 @@
 import os
 
-from selenium.webdriver import Keys
-
 from selenopiv.core import Browser
-from settings import BASE_DIR
+from project import BASE_DIR
 
 
 class StudentRegistrationPage:
@@ -30,6 +28,25 @@ class StudentRegistrationPage:
         self.city_option = browser.element('#city [id^=react-select-4-option]')
         self.submit = browser.element('#submit')
         self.table_responsive = browser.all_elements('.table-responsive td:nth-of-type(2)')
+
+    # HELPERS
+
+    def _select_month(self, month):
+        return self.browser.element(
+            f'//select[contains(concat(" ", normalize-space(@class), " "), " react-datepicker__month-select ")]'
+            f'/option[contains(text(), "{month}")]'
+        )
+
+    def _select_year(self, year):
+        return self.browser.element(
+            f'//select[contains(concat(" ", normalize-space(@class), " "), " react-datepicker__year-select ")]'
+            f'/option[contains(text(), "{year}")]'
+        )
+
+    def _select_day(self, day):
+        return self.browser.element(
+            f'.react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)'
+        )
 
     # ACTIONS
 
@@ -61,7 +78,14 @@ class StudentRegistrationPage:
         self.mobile_number.type(value)
 
     def fill_date_of_birth(self, day, month, year):
+        """
+        Only for MacOS:
         self.date_of_birth.type(Keys.COMMAND + 'a' + Keys.NULL + f'{day} {month} {year}')
+        """
+        self.date_of_birth.click()
+        self._select_month(month).click()
+        self._select_year(year).click()
+        self._select_day(day).click()
 
     def fill_subject(self, value):
         self.subjects.type(value)
@@ -85,11 +109,11 @@ class StudentRegistrationPage:
 
     def fill_state(self, value):
         self.state.type(value)
-        self.state_option.click()
+        self.state_option.click_by_js()
 
     def fill_city(self, value):
         self.city.type(value)
-        self.city_option.click()
+        self.city_option.click_by_js()
 
     def click_submit(self):
         self.submit.press_enter()
@@ -98,3 +122,6 @@ class StudentRegistrationPage:
 
     def should_have_registered(self, *args):
         self.table_responsive.should_have_texts(*args)
+
+    def first_name_should_have_attribute_placeholder(self):
+        self.first_name.should_have_attribute('placeholder', 'First Name')

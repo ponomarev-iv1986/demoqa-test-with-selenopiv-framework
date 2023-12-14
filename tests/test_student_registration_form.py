@@ -13,7 +13,7 @@ def test_login_with_student_registration_form(browser):
     page.fill_email('BillGates@gmail.com')
     page.select_gender('male')
     page.fill_mobile_number('0123456789')
-    page.fill_date_of_birth('28', 'Oct', '1955')
+    page.fill_date_of_birth('28', 'October', '1955')
     page.fill_subject('English')
     page.select_hobbies('Sports', 'Reading', 'Music')
     page.load_picture('car.jpeg')
@@ -35,3 +35,10 @@ def test_login_with_student_registration_form(browser):
         'Microsoft Campus',
         'NCR Noida'
     )
+
+
+def test_first_name_have_placeholder(browser):
+    page = StudentRegistrationPage(browser)
+    page.open_student_registration_form()
+
+    page.first_name_should_have_attribute_placeholder()
