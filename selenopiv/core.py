@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from selenium.common import WebDriverException
-from selenium.webdriver import Keys, ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from selenopiv.selector import to_locator

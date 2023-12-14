@@ -1,7 +1,7 @@
 import os
 
-from selenopiv.core import Browser
 from project import BASE_DIR
+from selenopiv.core import Browser
 
 
 class StudentRegistrationPage:
