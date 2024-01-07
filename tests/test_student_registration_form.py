@@ -42,3 +42,7 @@ def test_first_name_have_placeholder(browser):
     page.open_student_registration_form()
 
     page.first_name_should_have_attribute_placeholder()
+
+
+def test_fail():
+    assert False
