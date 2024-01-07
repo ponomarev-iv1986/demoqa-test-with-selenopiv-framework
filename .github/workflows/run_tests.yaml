@@ -30,10 +30,10 @@ jobs:
         echo context=remote >> .env
         echo selenoid_login=${{ secrets.SELENOID_LOGIN }} >> .env
         echo selenoid_password=${{ secrets.SELENOID_PASSWORD }} >> .env
-        pytest -v --alluredir=allure-results
+        pytest --alluredir=allure-results
 
     - name: Get Allure history
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       if: always()
       continue-on-error: true
       with:
