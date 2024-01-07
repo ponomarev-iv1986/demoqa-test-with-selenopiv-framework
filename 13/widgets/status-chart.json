@@ -1,0 +1,1 @@
+[{"uid":"1cd198aab255a85d","name":"test_login_with_student_registration_form","time":{"start":1704651436976,"stop":1704651446079,"duration":9103},"status":"passed","severity":"normal"},{"uid":"5b69bc3b8b0f470e","name":"test_first_name_have_placeholder","time":{"start":1704651451135,"stop":1704651453971,"duration":2836},"status":"passed","severity":"normal"}]
