@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Jan 09 09:04:03 GMT 2024","Tue Jan 09 09:04:16 GMT 2024","12432","tests","test_student_registration_form","","","","test_login_with_student_registration_form",""
+"passed","Tue Jan 09 09:04:23 GMT 2024","Tue Jan 09 09:04:26 GMT 2024","3134","tests","test_student_registration_form","","","","test_first_name_have_placeholder",""
+"failed","Tue Jan 09 09:04:26 GMT 2024","Tue Jan 09 09:04:26 GMT 2024","0","tests","test_student_registration_form","","","","test_fail",""
