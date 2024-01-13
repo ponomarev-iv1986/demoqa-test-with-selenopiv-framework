@@ -30,7 +30,6 @@ class StudentRegistrationPage:
         self.table_responsive = browser.all_elements('.table-responsive td:nth-of-type(2)')
 
     # HELPERS
-
     def _select_month(self, month):
         return self.browser.element(
             f'//select[contains(concat(" ", normalize-space(@class), " "), " react-datepicker__month-select ")]'
@@ -49,7 +48,6 @@ class StudentRegistrationPage:
         )
 
     # ACTIONS
-
     def open_student_registration_form(self):
         self.browser.visit('/automation-practice-form')
         self.browser.driver.maximize_window()
@@ -118,8 +116,7 @@ class StudentRegistrationPage:
     def click_submit(self):
         self.submit.press_enter()
 
-    # SHOULDS
-
+    # ASSERTS
     def should_have_registered(self, *args):
         self.table_responsive.should_have_texts(*args)
 

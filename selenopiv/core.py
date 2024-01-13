@@ -43,7 +43,6 @@ class Element:
         self.wait = browser.wait
 
     # COMMANDS
-
     def press_enter(self):
         def command(driver: WebDriver):
             webelement = driver.find_element(*to_locator(self.selector))
@@ -91,7 +90,6 @@ class Element:
         return self
 
     # CONDITIONS
-
     def should_have_text(self, value):
         def condition(driver: WebDriver):
             webelement = driver.find_element(*to_locator(self.selector))
@@ -122,7 +120,6 @@ class Collection:
         self.wait = browser.wait
 
     # CONDITIONS
-
     def should_have_texts(self, *args):
         def condition(driver: WebDriver):
             webelements = driver.find_elements(*to_locator(self.selector))
