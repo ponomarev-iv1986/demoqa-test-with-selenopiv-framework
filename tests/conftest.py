@@ -20,7 +20,7 @@ def browser():
             'browserVersion': '100',
             'selenoid:options': {
                 'enableVNC': True,
-                'enableVideo': False
+                'enableVideo': True
             }
         }
         options.capabilities.update(capabilities)
