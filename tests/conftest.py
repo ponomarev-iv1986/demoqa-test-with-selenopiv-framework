@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 import project
+from demoqa_test_with_selenopiv_framework.utils import attach
 from selenopiv.core import Browser, Config
 
 
@@ -34,5 +35,11 @@ def browser():
     browser = Browser(Config(driver=driver, timeout=5, base_url='https://demoqa.com'))
 
     yield browser
+
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_html(browser)
+    if project.settings.context == 'remote':
+        attach.add_video(browser)
 
     browser.quit()

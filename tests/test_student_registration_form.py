@@ -41,8 +41,14 @@ def test_first_name_have_placeholder(browser):
     page = StudentRegistrationPage(browser)
     page.open_student_registration_form()
 
-    page.first_name_should_have_attribute_placeholder()
+    page.first_name_should_have_attribute(
+        'placeholder', 'First Name'
+    )
 
 
 def test_fail():
     assert False
+
+
+def test_pass():
+    assert True

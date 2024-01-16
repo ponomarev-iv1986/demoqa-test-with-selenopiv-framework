@@ -1,5 +1,7 @@
 import os
 
+import allure
+
 from project import BASE_DIR
 from selenopiv.core import Browser
 
@@ -48,19 +50,24 @@ class StudentRegistrationPage:
         )
 
     # ACTIONS
+    @allure.step('Открываем форму регистрации')
     def open_student_registration_form(self):
         self.browser.visit('/automation-practice-form')
         self.browser.driver.maximize_window()
 
+    @allure.step('Заполняем поле First Name')
     def fill_first_name(self, value):
         self.first_name.type(value)
 
+    @allure.step('Заполняем поле Last Name')
     def fill_last_name(self, value):
         self.last_name.type(value)
 
+    @allure.step('Заполняем поле Email')
     def fill_email(self, value):
         self.email.type(value)
 
+    @allure.step('Выбираем Gender')
     def select_gender(self, gender: str):
         gender = gender.title()
         if gender == 'Male':
@@ -72,9 +79,11 @@ class StudentRegistrationPage:
         else:
             raise ValueError('gender must be male, female, or other')
 
+    @allure.step('Заполняем поле Mobile')
     def fill_mobile_number(self, value):
         self.mobile_number.type(value)
 
+    @allure.step('Заполняем поле Date of Birth')
     def fill_date_of_birth(self, day, month, year):
         """
         Only for MacOS:
@@ -85,10 +94,12 @@ class StudentRegistrationPage:
         self._select_year(year).click()
         self._select_day(day).click()
 
+    @allure.step('Заполняем поле Subjects')
     def fill_subject(self, value):
         self.subjects.type(value)
         self.subjects_option.click()
 
+    @allure.step('Заполняем поле Hobbies')
     def select_hobbies(self, *args):
         hobbies_list = [hobby.title() for hobby in args]
         if 'Sports' in hobbies_list:
@@ -98,27 +109,39 @@ class StudentRegistrationPage:
         if 'Music' in hobbies_list:
             self.hobby_music.click()
 
+    @allure.step('Загружаем картинку')
     def load_picture(self, value):
         path = os.path.join(BASE_DIR, 'tests', 'resources', value)
         self.picture.type(path)
 
+    @allure.step('Заполняем поле Current Address')
     def fill_address(self, value):
         self.address.type(value)
 
+    @allure.step('Заполняем поле State')
     def fill_state(self, value):
         self.state.type(value)
         self.state_option.click_by_js()
 
+    @allure.step('Заполняем поле City')
     def fill_city(self, value):
         self.city.type(value)
         self.city_option.click_by_js()
 
+    @allure.step('Подтверждаем регистрацию пользователя')
     def click_submit(self):
         self.submit.press_enter()
 
     # ASSERTS
+    @allure.step('Проверяем регистрацию пользователя')
     def should_have_registered(self, *args):
         self.table_responsive.should_have_texts(*args)
 
-    def first_name_should_have_attribute_placeholder(self):
-        self.first_name.should_have_attribute('placeholder', 'First Name')
+    @allure.step(
+        'Проверяем, что поле First Name имеет атрибут '
+        '{attribute} со значением {value}'
+    )
+    def first_name_should_have_attribute(self,
+                                         attribute,
+                                         value):
+        self.first_name.should_have_attribute(attribute, value)
