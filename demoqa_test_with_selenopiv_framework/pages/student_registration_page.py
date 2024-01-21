@@ -135,7 +135,7 @@ class StudentRegistrationPage:
     # ASSERTS
     @allure.step('Проверяем регистрацию пользователя')
     def should_have_registered(self, *args):
-        self.table_responsive.should_have_texts(*args)
+        self.table_responsive.should_have_exact_texts(*args)
 
     @allure.step(
         'Проверяем, что поле First Name имеет атрибут '
