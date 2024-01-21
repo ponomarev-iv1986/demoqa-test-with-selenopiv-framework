@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Jan 21 18:33:48 GMT 2024","Sun Jan 21 18:33:57 GMT 2024","9698","tests","test_student_registration_form","","","","test_login_with_student_registration_form",""
+"failed","Sun Jan 21 18:34:12 GMT 2024","Sun Jan 21 18:34:12 GMT 2024","0","tests","test_student_registration_form","","","","test_fail",""
+"passed","Sun Jan 21 18:34:35 GMT 2024","Sun Jan 21 18:34:40 GMT 2024","5553","tests","test_text_box","","","","test_login_with_text_box",""
+"passed","Sun Jan 21 18:34:08 GMT 2024","Sun Jan 21 18:34:10 GMT 2024","2543","tests","test_student_registration_form","","","","test_first_name_have_placeholder",""
+"passed","Sun Jan 21 18:34:20 GMT 2024","Sun Jan 21 18:34:24 GMT 2024","3679","tests","test_text_box","","","","test_placeholders",""
+"passed","Sun Jan 21 18:34:12 GMT 2024","Sun Jan 21 18:34:12 GMT 2024","0","tests","test_student_registration_form","","","","test_pass",""
