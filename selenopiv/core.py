@@ -95,7 +95,16 @@ class Element:
             location = webelement.location
             x = location['x']
             y = location['y']
-            driver.execute_script(f'window.scrollTo({x}, {y})')
+            driver.execute_script(f'window.scrollTo({x}, {y});')
+            return True
+
+        self.wait.until(command)
+        return self
+
+    def scroll_into_view_by_js(self):
+        def command(driver: WebDriver):
+            webelement = driver.find_element(*to_locator(self.selector))
+            driver.execute_script('arguments[0].scrollIntoView();', webelement)
             return True
 
         self.wait.until(command)

@@ -38,7 +38,7 @@ class TextBoxPage:
 
     @allure.step('Подтверждаем регистрацию пользователя')
     def click_submit(self):
-        self.submit.scroll_to_element_by_js()
+        self.submit.scroll_into_view_by_js()
         self.submit.click()
 
     # ASSERTS
