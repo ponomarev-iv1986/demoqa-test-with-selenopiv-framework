@@ -89,8 +89,20 @@ class Element:
         self.wait.until(command)
         return self
 
+    def scroll_to_element_by_js(self):
+        def command(driver: WebDriver):
+            webelement = driver.find_element(*to_locator(self.selector))
+            location = webelement.location
+            x = location['x']
+            y = location['y']
+            driver.execute_script(f'window.scrollTo({x}, {y})')
+            return True
+
+        self.wait.until(command)
+        return self
+
     # CONDITIONS
-    def should_have_text(self, value):
+    def should_have_exact_text(self, value):
         def condition(driver: WebDriver):
             webelement = driver.find_element(*to_locator(self.selector))
             actual_value = webelement.text
@@ -112,6 +124,16 @@ class Element:
         self.wait.until(condition)
         return self
 
+    def should_be_visible(self):
+        def condition(driver: WebDriver):
+            webelement = driver.find_element(*to_locator(self.selector))
+            if not webelement.is_displayed():
+                raise AssertionError(f'element is not visible')
+            return True
+
+        self.wait.until(condition)
+        return self
+
 
 class Collection:
     def __init__(self, selector, browser: Browser):
@@ -120,12 +142,26 @@ class Collection:
         self.wait = browser.wait
 
     # CONDITIONS
-    def should_have_texts(self, *args):
+    def should_have_exact_texts(self, *args):
         def condition(driver: WebDriver):
             webelements = driver.find_elements(*to_locator(self.selector))
             actual_values = tuple([webelement.text for webelement in webelements])
             if actual_values != args:
                 raise AssertionError(f'text of elements is not {args}\nactual text: {actual_values}')
+            return True
+
+        self.wait.until(condition)
+        return self
+
+    def should_have_texts(self, *args):
+        def condition(driver: WebDriver):
+            webelements = driver.find_elements(*to_locator(self.selector))
+            actual_values = tuple([webelement.text for webelement in webelements])
+            if len(args) != len(actual_values):
+                raise AssertionError(f'wrong amount of elements, check and enter correct expected texts')
+            for i in range(len(args)):
+                if args[i] not in actual_values[i]:
+                    raise AssertionError(f'texts {args} not in elements\nactual texts: {actual_values}')
             return True
 
         self.wait.until(condition)
