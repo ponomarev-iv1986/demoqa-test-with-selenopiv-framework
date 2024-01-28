@@ -18,6 +18,7 @@ class CustomWait(WebDriverWait):
         screen = None
         stacktrace = None
         reason = None
+        is_err = False
 
         end_time = time.monotonic() + self._timeout
         while True:
@@ -30,10 +31,15 @@ class CustomWait(WebDriverWait):
                 stacktrace = getattr(exc, "stacktrace", None)
                 reason = getattr(exc, 'msg', None)
             except AssertionError as err:
+                is_err = True
                 reason = err.args[0]
             time.sleep(self._poll)
             if time.monotonic() > end_time:
                 break
+        if is_err:
+            raise AssertionError(
+                f'\n\nTimeout: {self._timeout}\nReason: {reason}'
+            )
         raise TimeoutException(
             message + f'\n\nTimeout: {self._timeout}\nReason: {reason}', screen, stacktrace
         )
