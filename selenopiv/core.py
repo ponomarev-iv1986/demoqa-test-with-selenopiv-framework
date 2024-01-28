@@ -70,6 +70,26 @@ class Element:
         self.wait.until(command)
         return self
 
+    def double_click(self):
+        def command(driver: WebDriver):
+            action = ActionChains(driver)
+            webelement = driver.find_element(*to_locator(self.selector))
+            action.double_click(webelement).perform()
+            return True
+
+        self.wait.until(command)
+        return self
+
+    def context_click(self):
+        def command(driver: WebDriver):
+            action = ActionChains(driver)
+            webelement = driver.find_element(*to_locator(self.selector))
+            action.context_click(webelement).perform()
+            return True
+
+        self.wait.until(command)
+        return self
+
     def click_by_action(self):
         def command(driver: WebDriver):
             action = ActionChains(driver)
