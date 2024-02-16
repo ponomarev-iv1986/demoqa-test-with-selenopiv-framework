@@ -1,5 +1,6 @@
-from demoqa_test_with_selenopiv_framework.pages.student_registration_page import \
-    StudentRegistrationPage
+from demoqa_test_with_selenopiv_framework.pages.student_registration_page import (
+    StudentRegistrationPage,
+)
 
 
 def test_login_with_student_registration_form(browser):
@@ -33,7 +34,7 @@ def test_login_with_student_registration_form(browser):
         'Sports, Reading, Music',
         'car.jpeg',
         'Microsoft Campus',
-        'NCR Noida'
+        'NCR Noida',
     )
 
 
@@ -41,9 +42,7 @@ def test_first_name_have_placeholder(browser):
     page = StudentRegistrationPage(browser)
     page.open_student_registration_form()
 
-    page.first_name_should_have_attribute(
-        'placeholder', 'First Name'
-    )
+    page.first_name_should_have_attribute('placeholder', 'First Name')
 
 
 def test_fail():

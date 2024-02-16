@@ -20,7 +20,9 @@ class Browser:
         self.config = config
         self.driver: WebDriver = config.driver
         self.wait = CustomWait(
-            driver=config.driver, timeout=config.timeout, ignored_exceptions=(WebDriverException,)
+            driver=config.driver,
+            timeout=config.timeout,
+            ignored_exceptions=(WebDriverException,),
         )
 
     def visit(self, url):
@@ -136,7 +138,9 @@ class Element:
             webelement = driver.find_element(*to_locator(self.selector))
             actual_value = webelement.text
             if actual_value != value:
-                raise AssertionError(f'text of element is not "{value}"\nactual value: "{actual_value}"')
+                raise AssertionError(
+                    f'text of element is not "{value}"\nactual value: "{actual_value}"'
+                )
             return True
 
         self.wait.until(condition)
@@ -147,7 +151,10 @@ class Element:
             webelement = driver.find_element(*to_locator(self.selector))
             actual_value = webelement.get_attribute(attribute)
             if actual_value != value:
-                raise AssertionError(f'attribute "{attribute}" is not "{value}"\nactual value: "{actual_value}"')
+                raise AssertionError(
+                    f'attribute "{attribute}" is not "{value}"\n'
+                    f'actual value: "{actual_value}"'
+                )
             return True
 
         self.wait.until(condition)
@@ -176,7 +183,9 @@ class Collection:
             webelements = driver.find_elements(*to_locator(self.selector))
             actual_values = tuple([webelement.text for webelement in webelements])
             if actual_values != args:
-                raise AssertionError(f'text of elements is not {args}\nactual text: {actual_values}')
+                raise AssertionError(
+                    f'text of elements is not {args}\nactual text: {actual_values}'
+                )
             return True
 
         self.wait.until(condition)
@@ -187,10 +196,14 @@ class Collection:
             webelements = driver.find_elements(*to_locator(self.selector))
             actual_values = tuple([webelement.text for webelement in webelements])
             if len(args) != len(actual_values):
-                raise AssertionError(f'wrong amount of elements, check and enter correct expected texts')
+                raise AssertionError(
+                    f'wrong amount of elements, check and enter correct expected texts'
+                )
             for i in range(len(args)):
                 if args[i] not in actual_values[i]:
-                    raise AssertionError(f'texts {args} not in elements\nactual texts: {actual_values}')
+                    raise AssertionError(
+                        f'texts {args} not in elements\nactual texts: {actual_values}'
+                    )
             return True
 
         self.wait.until(condition)

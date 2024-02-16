@@ -11,10 +11,7 @@ def test_double_click_btn(browser):
 
     # THEN
     page.should_be_visible(page.double_click_msg)
-    page.should_have_exact_text(
-        page.double_click_msg,
-        'You have done a double click'
-    )
+    page.should_have_exact_text(page.double_click_msg, 'You have done a double click')
 
 
 def test_right_click_btn(browser):
@@ -27,10 +24,7 @@ def test_right_click_btn(browser):
 
     # THEN
     page.should_be_visible(page.right_click_msg)
-    page.should_have_exact_text(
-        page.right_click_msg,
-        'You have done a right click'
-    )
+    page.should_have_exact_text(page.right_click_msg, 'You have done a right click')
 
 
 def test_dynamic_click_btn(browser):
@@ -43,7 +37,4 @@ def test_dynamic_click_btn(browser):
 
     # THEN
     page.should_be_visible(page.click_msg)
-    page.should_have_exact_text(
-        page.click_msg,
-        'You have done a dynamic click'
-    )
+    page.should_have_exact_text(page.click_msg, 'You have done a dynamic click')

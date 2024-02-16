@@ -12,16 +12,30 @@ class StudentRegistrationPage:
         self.first_name = browser.element('#firstName')
         self.last_name = browser.element('#lastName')
         self.email = browser.element('#userEmail')
-        self.gender_male = browser.element('//div[@id="genterWrapper"]//*[contains(text(), "Male")]')
-        self.gender_female = browser.element('//div[@id="genterWrapper"]//*[contains(text(), "Female")]')
-        self.gender_other = browser.element('//div[@id="genterWrapper"]//*[contains(text(), "Other")]')
+        self.gender_male = browser.element(
+            '//div[@id="genterWrapper"]//*[contains(text(), "Male")]'
+        )
+        self.gender_female = browser.element(
+            '//div[@id="genterWrapper"]//*[contains(text(), "Female")]'
+        )
+        self.gender_other = browser.element(
+            '//div[@id="genterWrapper"]//*[contains(text(), "Other")]'
+        )
         self.mobile_number = browser.element('#userNumber')
         self.date_of_birth = browser.element('#dateOfBirthInput')
         self.subjects = browser.element('#subjectsWrapper #subjectsInput')
-        self.subjects_option = browser.element('#subjectsWrapper #react-select-2-option-0')
-        self.hobby_sports = browser.element('//div[@id="hobbiesWrapper"]//*[contains(text(), "Sports")]')
-        self.hobby_reading = browser.element('//div[@id="hobbiesWrapper"]//*[contains(text(), "Reading")]')
-        self.hobby_music = browser.element('//div[@id="hobbiesWrapper"]//*[contains(text(), "Music")]')
+        self.subjects_option = browser.element(
+            '#subjectsWrapper #react-select-2-option-0'
+        )
+        self.hobby_sports = browser.element(
+            '//div[@id="hobbiesWrapper"]//*[contains(text(), "Sports")]'
+        )
+        self.hobby_reading = browser.element(
+            '//div[@id="hobbiesWrapper"]//*[contains(text(), "Reading")]'
+        )
+        self.hobby_music = browser.element(
+            '//div[@id="hobbiesWrapper"]//*[contains(text(), "Music")]'
+        )
         self.picture = browser.element('#uploadPicture')
         self.address = browser.element('#currentAddress')
         self.state = browser.element('#state #react-select-3-input')
@@ -29,7 +43,9 @@ class StudentRegistrationPage:
         self.city = browser.element('#city #react-select-4-input')
         self.city_option = browser.element('#city [id^=react-select-4-option]')
         self.submit = browser.element('#submit')
-        self.table_responsive = browser.all_elements('.table-responsive td:nth-of-type(2)')
+        self.table_responsive = browser.all_elements(
+            '.table-responsive td:nth-of-type(2)'
+        )
 
     # HELPERS
     def _select_month(self, month):
@@ -141,7 +157,5 @@ class StudentRegistrationPage:
         'Проверяем, что поле First Name имеет атрибут '
         '{attribute} со значением {value}'
     )
-    def first_name_should_have_attribute(self,
-                                         attribute,
-                                         value):
+    def first_name_should_have_attribute(self, attribute, value):
         self.first_name.should_have_attribute(attribute, value)

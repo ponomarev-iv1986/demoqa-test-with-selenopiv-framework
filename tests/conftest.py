@@ -12,16 +12,15 @@ from selenopiv.core import Browser, Config
 @pytest.fixture(scope='function')
 def browser():
     if project.settings.context == 'local':
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        driver = webdriver.Chrome(
+            service=ChromeService(ChromeDriverManager().install())
+        )
     else:
         options = Options()
         capabilities = {
             'browserName': 'chrome',
             'browserVersion': '100',
-            'selenoid:options': {
-                'enableVNC': True,
-                'enableVideo': True
-            }
+            'selenoid:options': {'enableVNC': True, 'enableVideo': True},
         }
         options.capabilities.update(capabilities)
 
@@ -30,7 +29,7 @@ def browser():
 
         driver = webdriver.Remote(
             command_executor=f'https://{login}:{password}@selenoid.autotests.cloud/wd/hub',
-            options=options
+            options=options,
         )
     browser = Browser(Config(driver=driver, timeout=5, base_url='https://demoqa.com'))
 

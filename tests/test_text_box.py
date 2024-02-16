@@ -1,5 +1,4 @@
-from demoqa_test_with_selenopiv_framework.pages.text_box_page import \
-    TextBoxPage
+from demoqa_test_with_selenopiv_framework.pages.text_box_page import TextBoxPage
 
 
 def test_placeholders(browser):
@@ -8,20 +7,11 @@ def test_placeholders(browser):
     page.open_text_box_form()
 
     # THEN
-    page.full_name_should_have_attribute(
-        'placeholder',
-        'Full Name'
-    )
+    page.full_name_should_have_attribute('placeholder', 'Full Name')
 
-    page.email_should_have_attribute(
-        'placeholder',
-        'name@example.com'
-    )
+    page.email_should_have_attribute('placeholder', 'name@example.com')
 
-    page.current_address_should_have_attribute(
-        'placeholder',
-        'Current Address'
-    )
+    page.current_address_should_have_attribute('placeholder', 'Current Address')
 
 
 def test_login_with_text_box(browser):
@@ -39,8 +29,5 @@ def test_login_with_text_box(browser):
     # THEN
     page.output_border_should_be_visible()
     page.output_values_should_have_texts(
-        'Bill Gates',
-        'bill@gmail.com',
-        'Microsoft Campus',
-        'MS Campus'
+        'Bill Gates', 'bill@gmail.com', 'Microsoft Campus', 'MS Campus'
     )

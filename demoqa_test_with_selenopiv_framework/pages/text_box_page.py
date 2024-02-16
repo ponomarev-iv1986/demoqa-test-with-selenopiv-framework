@@ -46,34 +46,21 @@ class TextBoxPage:
         'Проверяем, что поле Full Name имеет атрибут '
         '{attribute} со значением {value}'
     )
-    def full_name_should_have_attribute(self,
-                                        attribute,
-                                        value):
-        self.full_name.should_have_attribute(
-            attribute, value
-        )
+    def full_name_should_have_attribute(self, attribute, value):
+        self.full_name.should_have_attribute(attribute, value)
 
     @allure.step(
-        'Проверяем, что поле Email имеет атрибут '
-        '{attribute} со значением {value}'
+        'Проверяем, что поле Email имеет атрибут ' '{attribute} со значением {value}'
     )
-    def email_should_have_attribute(self,
-                                    attribute,
-                                    value):
-        self.email.should_have_attribute(
-            attribute, value
-        )
+    def email_should_have_attribute(self, attribute, value):
+        self.email.should_have_attribute(attribute, value)
 
     @allure.step(
         'Проверяем, что поле Current Address имеет атрибут '
         '{attribute} со значением {value}'
     )
-    def current_address_should_have_attribute(self,
-                                              attribute,
-                                              value):
-        self.current_address.should_have_attribute(
-            attribute, value
-        )
+    def current_address_should_have_attribute(self, attribute, value):
+        self.current_address.should_have_attribute(attribute, value)
 
     @allure.step(
         'Проверяем, что рамка с данными пользователя '

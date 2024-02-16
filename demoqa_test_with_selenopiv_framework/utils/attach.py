@@ -6,7 +6,12 @@ from selenopiv.core import Browser
 
 def add_screenshot(browser: Browser):
     png = browser.driver.get_screenshot_as_png()
-    allure.attach(body=png, name='screenshot', attachment_type=AttachmentType.PNG, extension='.png')
+    allure.attach(
+        body=png,
+        name='screenshot',
+        attachment_type=AttachmentType.PNG,
+        extension='.png',
+    )
 
 
 def add_logs(browser: Browser):
@@ -20,10 +25,14 @@ def add_html(browser: Browser):
 
 
 def add_video(browser: Browser):
-    video_url = 'https://selenoid.autotests.cloud/video/' + browser.driver.session_id + '.mp4'
-    html = (
-            '<html><body><video width="100%" height="100%" controls autoplay><source src="'
-            + video_url
-            + '" type="video/mp4"></video></body></html>'
+    video_url = (
+        'https://selenoid.autotests.cloud/video/' + browser.driver.session_id + '.mp4'
     )
-    allure.attach(html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html')
+    html = (
+        '<html><body><video width="100%" height="100%" controls autoplay><source src="'
+        + video_url
+        + '" type="video/mp4"></video></body></html>'
+    )
+    allure.attach(
+        html, 'video_' + browser.driver.session_id, AttachmentType.HTML, '.html'
+    )

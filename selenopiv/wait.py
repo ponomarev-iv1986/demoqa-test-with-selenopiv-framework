@@ -6,7 +6,9 @@ from selenium.webdriver.support.wait import D, T, WebDriverWait
 
 
 class CustomWait(WebDriverWait):
-    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = "") -> T:
+    def until(
+        self, method: Callable[[D], Union[Literal[False], T]], message: str = ""
+    ) -> T:
         """Calls the method provided with the driver as an argument until the \
         return value does not evaluate to ``False``.
 
@@ -37,9 +39,9 @@ class CustomWait(WebDriverWait):
             if time.monotonic() > end_time:
                 break
         if is_err:
-            raise AssertionError(
-                f'\n\nTimeout: {self._timeout}\nReason: {reason}'
-            )
+            raise AssertionError(f'\n\nTimeout: {self._timeout}\nReason: {reason}')
         raise TimeoutException(
-            message + f'\n\nTimeout: {self._timeout}\nReason: {reason}', screen, stacktrace
+            message + f'\n\nTimeout: {self._timeout}\nReason: {reason}',
+            screen,
+            stacktrace,
         )
